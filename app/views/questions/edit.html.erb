@@ -1,0 +1,33 @@
+<div class="bg-light text-dark text-center top">
+
+<h6 style="margin: 20px;" class="border border-dark">Questions</h6>
+	<div class=" border-bottom border-dark bg-light text-light" style="margin: 20px; padding: 20px 5px;">
+		
+		<%= render "casestudies/partials/edit_question", question: @question %>
+		<table style="width:100%; border: 1px solid black;">
+			<tr class="text-center text-dark">
+			    <th style = "border: 1px solid black;">Trait</th>
+			    <th style = "border: 1px solid black;"></th>
+	  		</tr>
+  		<% @question.question_traits.each do |t|%>
+				<tr class="text-center text-dark"> 
+					<td style = "border: 1px solid black;">
+						<%= t.trait.name%>
+					</td>
+					<td style = "border: 1px solid black;">
+						<%= link_to 'Delete Trait',delete_quesion_trait_path(t),method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-block btn-danger"  %>
+					</td>
+				</tr>
+				<br>
+			<% end %>
+		</table>
+			<br>
+			<br>
+			<%= form_for @trait, url: casestudy_question_assign_trait_path(@casestudy, @question, @trait) do |form| %>
+	 			<% options = options_from_collection_for_select(@traits, 'id', 'name') %>
+				<%= form.select :id, options%>
+				<div class="actions">
+					<%= form.submit :"Add Trait", class:"btn btn-block btn-success text-center"%>
+			    </div>
+			<% end %>
+	</div>

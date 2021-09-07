@@ -1,0 +1,4 @@
+<% if can? :create, Casestudy %>
+<%= link_to 'Create new Casestudy', new_casestudy_path , :class => 'btn bg-success text-light px-md-5 btn-block', :style => 'margin:10px 20px 10px 5px;' %> 
+<% end %>
+<%= render partial: "partials/disp_casestudies" %>

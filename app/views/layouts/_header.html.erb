@@ -1,0 +1,62 @@
+
+
+<!-- 
+example 3 - Navbar with brand left, links on center and right that collapse inot the vertical mobile
+    menu
+-->
+<nav class="navbar navbar-light navbar-expand-md bg-faded text-light bg-dark justify-content-center">
+    <a class="navbar-brand text-light" href="#">Simulation Tests</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="navbar-collapse collapse" id="collapsingNavbar3">
+        <ul class="navbar-nav w-75 justify-content-left">
+            <% if !user_signed_in? %>
+              <li class="nav-item ">
+                  <%= link_to 'Log In', new_user_session_path, :class => 'btn bg-light px-md-5  text-dark' , :style => 'margin:10px 20px 10px 5px;' %>
+              </li>
+              <li class="nav-item ">
+                  <%= link_to 'Walk in Tests', walk_in_tests_path(1,1), :class => 'btn px-md-5 bg-light text-dark' , :style => 'margin:10px 20px 10px 5px;' %>
+              </li>
+            <% else %>
+              <li class="nav-item ">
+                <%= link_to 'Home', root_path , :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+              </li>
+              <li class="nav-item ">
+                <%= link_to 'Edit Profile', edit_user_registration_path , :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+              </li>
+            <% end %>
+        </ul>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav justify-content-right">
+              <% if user_signed_in? %>
+                <li class="nav-item ">
+                  <%= link_to 'Sign Out', destroy_user_session_path , :class => 'btn bg-danger text-light px-md-5 btn-block'%> 
+                </li>
+              <% end %>
+              </div>
+
+        </div>
+
+    </div>
+</nav>
+
+
+<div class="text-center">
+    <span class="badge badge-dark badge-pill">
+    this is viewport center
+    </span>
+</div>
+
+
+ <%= render partial: "layouts/user_info" %>
+
+<div class="container">
+  <% if notice %>
+    <p class="notice text-success"><%= notice %></p>
+  <% end %>
+
+  <% if alert %>
+    <p class="alert text-danger"><%= alert %></p>
+  <% end %>
+</div>

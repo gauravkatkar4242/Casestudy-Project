@@ -1,0 +1,17 @@
+<div class="bg-light text-center">	
+	<%= form_for @casestudy_user do |form| %>
+
+			<% options = options_from_collection_for_select(@user, 'id', 'email') %>
+			<%= form.select :user_id, options, {},{class: 'btn boder border-dark text-dark m-3'}%>
+		
+		<% options = options_from_collection_for_select(@assessor, 'id', 'email') %>
+		<%= form.select :assessor_id, options, {},{class: 'btn boder border-dark text-dark m-3'}%>
+
+		<% options = options_from_collection_for_select(@cs, 'id', 'name')%>
+		<%= form.select :casestudy_id, options, {} ,{class: 'btn boder border-dark text-dark m-3'} %>
+
+		<div class="actions">
+			<%= form.submit :"Assign", class:"btn btn-block btn-success text-center"%> 
+		</div>
+	<% end %>
+</div>

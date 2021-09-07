@@ -1,0 +1,72 @@
+<%= javascript_pack_tag 'timer' %>
+<%= @casestudy.duration * 60 %>
+<%= @casestudy_user.time_elapsed %>
+<%= content_tag :div, '', id: 'cs_duration', data: {source: @casestudy.duration * 60 } %>
+<%= content_tag :div, '', id: 'cs_time_elapsed', data: {source:	@casestudy_user.time_elapsed } %>
+<%= content_tag :div, '', id: 'cs_id', data: {source: @casestudy_user.id } %>
+
+<div id= "timer">
+</div>
+<div>
+   
+</div>
+
+
+<div class="row col-md-12 border-dark">
+
+				<div class="border border-success bg-light text-dark text-center px-md-8 " style="margin: 20px; padding: 20px 5px;">
+					<h4 class="border border-dark">Casestudy Details</h4>
+					<br>
+					
+					<h6> Name: <%= @casestudy.name %> </h6>
+					
+					<!-- <h6> Creator_id: <%= @casestudy.creator_id %> </h6> -->
+					<!-- <h6> Creator name: <%= User.find(@casestudy.creator_id).name %> </h6> -->
+					<h6> Duration: <%= @casestudy.duration %> </h6>
+					<h6> Scale: <%= @casestudy.scale %> </h6>
+				</div>
+			<div class="col-sm-7 ">
+
+				<div class="border border-success  bg-light text-dark  text-center" style="margin: 20px; padding: 20px 0px;">
+					<h6 style="margin: 20px;" class="border border-dark">Pages</h6>
+					<% @casestudy.pages.each do |p|%>
+			 			<div class="border-bottom border-dark">
+			 			<%= p.body %>
+			 			</div>
+			 			<br>
+			 		<% end %>
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<div class="border border-success  bg-light text-dark  text-center" style="margin: 20px 0; padding: 20px 0px;">
+			 		<h6 style="margin: 20px;" class="border border-dark text-center ">Questions</h6>
+					<% @casestudy.questions.each do |q|%>
+						<div class="border-bottom" id = "question">
+							<div class="text-center">
+								<%= q.body  %>
+							</div>
+				 			<% if q.traits.count > 0%>
+				 				<div class="bg-light text-dark">
+						 			<% q.traits.each do |t|%>
+						 				<span class="text-light border bg-secondary btn sm-4"  style="margin: 10px;"> 
+						 					<%= t.name%>
+						 				</span>
+						 			<% end %>
+						 		</div>	
+						 	<% end %>
+						 		<br>
+						 	<div id="answer" class="border border-danger">
+						 		<%= render "user_responses/response_form", response: q.user_responses.find_by(user_id: current_user.id)%> 
+						 	</div>
+	 					</div>
+				 	<% end %>	
+	 			</div>	 	
+			</div>  
+</div>
+<div class="row col-md-12 border-dark">
+
+<%= link_to 'Submit Final',casestudy_user_final_submit_path(@casestudy_user), :class => 'btn bg-danger text-light btn-block border row', :style => 'margin:10px 20px 10px 5px;' %>
+	</div>	 			
+
+
+

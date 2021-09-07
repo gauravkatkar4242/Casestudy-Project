@@ -1,0 +1,19 @@
+
+<div class="container border text-center py-md-2 mt-4">
+  
+  <%= form_with model:([ @casestudy, question]) do |form| %>
+
+  <div class="field row py-md-2">
+    <%= form.hidden_field :id, :class => 'col-sm-6' %>
+
+    <%= form.text_area :body, rows: 4, :class => 'col-sm-12 ' %>
+    <div class="actions"  style="margin: 20px">
+      <%= form.submit :"Update Question", class: "btn btn-success"%>
+      <%= link_to 'Delete Question', [@casestudy , question] , method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-block btn-danger"  %>
+    </div>
+      <%= link_to 'Show Seperate Question',edit_casestudy_question_path(@casestudy, question), :class => 'btn bg-success text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+          
+  </div>
+  <% end %>
+
+</div>

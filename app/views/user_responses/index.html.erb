@@ -1,0 +1,6 @@
+Instructions
+<% if @casestudy_user.status == 'in_progress' %>
+<%= link_to 'Resume Exam',casestudy_user_start_exam_path(@casestudy_user),:id => "resume", :class => 'btn bg-danger text-light btn-block border row', :style => 'margin:10px 20px 10px 5px;' %>
+<% else %>
+<%= link_to 'Start Exam',casestudy_user_start_exam_path(@casestudy_user),:id => "start", :class => 'btn bg-danger text-light btn-block border row', :style => 'margin:10px 20px 10px 5px;' %>
+<% end %>

@@ -1,0 +1,26 @@
+<br>
+<div>
+<h4 class="text-center border-bottom"> Enter Details</h4>
+</div>
+<div class="container text-center border-bottom border-dark text-center py-md-2 mt-4">
+  
+  <%= form_with url:walk_in_tests_path do |form| %>
+
+  <div class="form-outline mb-4">
+      <%= form.label :"Full name", :class => 'col-sm-2 ' %>
+      <%= form.text_field :name , :class => 'col-sm-4 ', :value => "Gaurav"%>
+    </div>
+    <div class="form-outline mb-4">
+      <%= form.label :Email, :class => 'col-sm-2 ' %>
+      <%= form.text_field :email , :class => 'col-sm-4', :value => "gaurav@123.com"%>
+    </div>
+    <div class="form-outline mb-4">
+      <%= form.label :Passkey, :class => 'col-sm-2' %>
+      <%= form.text_field :passkey, :class => 'col-sm-4' , :value => "qazqaz"%>
+    </div>
+    <div class="actions form-outline mb-4 btn ">
+      <%= form.submit :Proceed%>
+    </div>
+  <% end %>
+
+</div>

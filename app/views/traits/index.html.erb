@@ -1,0 +1,11 @@
+<h4 class="border border-dark">Traits Details</h4>
+<% @traits.each do |t|%>
+	<div class="row col-sm-12 m-3 clearfix border border-success bg-light text-dark text-center ">
+		
+		<div class="col-sm-8 mt-2"><h6> Name: <%= t.name %></h6> </div>
+		<%= link_to 'Edit', edit_trait_path(t), :class => 'float-right col-sm-4 btn bg-success text-light ' %>
+		
+	</div>
+<% end %>
+
+<%= link_to 'Create new Trait', new_trait_path, :class => 'btn bg-success text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>

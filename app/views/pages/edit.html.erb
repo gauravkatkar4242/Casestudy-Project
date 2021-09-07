@@ -1,0 +1,5 @@
+<div class="col-sm-7 bg-light text-dark text-center top">
+	<h6 style="margin: 20px;" class="border border-dark">Pages</h6>
+	<%= render "casestudies/partials/edit_page", page: @casestudy.pages.find(params[:id]) %>
+</div>
+<%= link_to 'Back',edit_casestudy_path(@casestudy), :class => 'btn bg-success text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>

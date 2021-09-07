@@ -1,0 +1,49 @@
+<%= link_to 'View All Casestudies',casestudies_path, :class => 'btn bg-success text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+
+<%= link_to 'Show Casestudy',casestudy_path(@casestudy), :class => 'btn bg-success text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+ 		
+<br><br>
+	<div>
+		<%= render 'casestudies/partials/casestudy_form', casestudy: @casestudy %>
+	</div>
+<div class="row col-md-12 border-dark ">
+		<div class="col-sm-7 bg-light text-dark text-center top">
+			<h6 style="margin: 20px;" class="border border-dark">Pages</h6>
+			<% @casestudy.pages.each do |p|%>
+	 			<%= render "casestudies/partials/edit_page", page: p %>
+	 		<% end %>
+	 		<div id = "new_page">
+	 		<%= render partial: "casestudies/partials/page_form" %> 
+	 		</div>
+	 	</div>
+	
+
+
+	<div class="col-sm-5 top">
+ 		<div class="bg-light text-dark text-center top">
+			<h6 style="margin: 20px;" class="border border-dark">Questions</h6>
+				<% @casestudy.questions.each do |q|%>
+					<div class=" border-bottom border-dark bg-light text-light text-center " style="margin: 20px; padding: 20px 5px;">
+						<%= render "casestudies/partials/edit_question", question: q %>
+			 			<% q.traits.each do |t|%>
+			 				<span class="text-light border bg-secondary border-dark btn sm-4"  style="margin: 10px;"> 
+			 					<%= t.name%>
+			 				</span>
+			 			<% end %>
+			 			<br>
+			 			<br>
+			 			<%= form_for @trait, url: casestudy_question_assign_trait_path(@casestudy, q) do |form| %>
+				 			<% options = options_from_collection_for_select(@traits, 'id', 'name') %>
+							<%= form.select :id, options%>
+    						<div class="actions">
+      							<%= form.submit :"Add Trait", class:"btn btn-block btn-success text-center"%> 
+						    </div>
+						<% end %>
+					</div>
+	 			<% end %>
+	 			<div id = "new_question">
+	 				<%= render partial: "casestudies/partials/question_form" %> 
+	 			</div>
+	</div>
+</div>  
+

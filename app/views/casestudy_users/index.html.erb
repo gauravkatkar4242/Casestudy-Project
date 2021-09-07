@@ -1,0 +1,22 @@
+<h3 class="text-center">Assigned Casestudies</h3>
+
+<table style="width:100%; border: 1px solid black;">
+	<tr class="text-center text-dark">
+	    <th style = "border: 1px solid black;">id</th>
+	    <th style = "border: 1px solid black;">User id</th>
+	    <th style = "border: 1px solid black;">Casestudy id</th>
+	    <th style = "border: 1px solid black;">Assesor id</th>
+	    <th style = "border: 1px solid black;">Status</th>
+	</tr>
+	<% @casestudy_users.each do |c|%>
+		<tr class="text-center text-dark">
+		    <td style = "border: 1px solid black;"><%= c.id %></td>
+		    <td style = "border: 1px solid black;"><%= c.user_id %>.<%= c.user.name %></td>
+		    <td style = "border: 1px solid black;"><%= c.casestudy_id %>.<%= c.casestudy.name %></td>
+		    <td style = "border: 1px solid black;"><%= c.assessor_id %>.<%= c.assessor.name %></td>
+		    <td style = "border: 1px solid black;"><%= c.status%></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to "Assign new Casestudies to User", new_casestudy_user_path , :class => 'btn bg-dark text-light'%>

@@ -1,0 +1,117 @@
+
+<h3>Users </h3>
+
+
+<table style="width:100%; border: 1px solid black;">
+  <tr class="text-center">
+    <th style = "border: 1px solid black;"> Delete User</th>
+    <th >Id</th>
+    <th style = "border: 1px solid black;">User Name </th>
+    <th style = "border: 1px solid black;">is Admin </th>
+    <th style = "border: 1px solid black;"> is Content Creator </th>
+    <th style = "border: 1px solid black;"> is Assessor </th>
+    <th style = "border: 1px solid black;"> is Candidate </th>
+
+  </tr>
+ <% @user.each do |u| %>
+  <tr class="text-center"> 
+    <td style = "border: 1px solid black;">
+      <%= button_to "DELETE account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %>
+
+    </td> 
+    <td style = "border: 1px solid black;"><%= u.id%></td> 
+    <td style = "border: 1px solid black;"><%= u.email%></td> 
+    <td style = "border: 1px solid black;">
+    		<%if u.roles.exists?(name: "Admin")%>
+    			
+          <%= link_to "Remove Admin Privlages", update_role_path( u, Role.find_by(name: "Admin")), :class => 'btn bg-danger text-light' %>
+    		<% else %>
+    			
+          <%= link_to "Add Admin Privlages", update_role_path( u, Role.find_by(name: "Admin")), :class => 'btn bg-success text-light' %>
+    		<%end%>
+    </td>
+    <td style = "border: 1px solid black;">
+    	<%if u.roles.exists?(name: "Content Creator")%>
+          
+          <%= link_to "Remove CC Privlages", update_role_path( u, Role.find_by(name: "Content Creator")), :class => 'btn bg-danger text-light' %>
+        <% else %>
+     
+          <%= link_to "Add CC Privlages", update_role_path( u, Role.find_by(name: "Content Creator")), :class => 'btn bg-success text-light' %>
+        <%end%>
+    </td>
+    <td style = "border: 1px solid black;">
+      <%if u.roles.exists?(name: "Assessor")%>
+          
+          <%= link_to "Remove Assessor Privlages", update_role_path( u, Role.find_by(name: "Assessor")), :class => 'btn bg-danger text-light' %>
+        <% else %>
+          
+          <%= link_to "Add Assessor Privlages", update_role_path( u, Role.find_by(name: "Assessor")), :class => 'btn bg-success text-light' %>
+        <%end%>
+    </td>
+    <td style = "border: 1px solid black;">
+    	<%if u.roles.exists?(name: "Candidate")%>
+          
+          <%= link_to "Remove Candidate Privlages", update_role_path( u, Role.find_by(name: "Candidate")), :class => 'btn bg-danger text-light' %>
+        <% else %>
+          <%= link_to "Add Candidate Privlages", update_role_path( u, Role.find_by(name: "Candidate")), :class => 'btn bg-success text-light' %>
+        <%end%>
+    </td>
+
+  </tr>
+  <% end %>
+
+ </table>
+
+<br>
+
+
+<h3>Casestudies </h3>
+<table style="width:100%; border: 1px solid black;">
+  <tr class="text-center">
+    <th style = "border: 1px solid black;">Id</th>
+    <th style = "border: 1px solid black;">Casestudy Name </th>
+    <th style = "border: 1px solid black;">Creator Id</th>
+  </tr>
+ <% @cs.each do |u| %>
+  <tr class="text-center"> 
+    <td style = "border: 1px solid black;"><%= u.id%></td> 
+    <td style = "border: 1px solid black;"><%= u.name%></td> 
+    <td style = "border: 1px solid black;"><%= u.creator_id%></td> 
+  </tr>
+  <% end %>
+ </table>
+
+<br>
+
+<h3>CasestudY Users </h3>
+<table style="width:100%; border: 1px solid black;">
+  <tr class="text-center">
+    <th style = "border: 1px solid black;">Id</th>
+    <th style = "border: 1px solid black;">Casestudy </th>
+    <th style = "border: 1px solid black;">User</th>
+    <th style = "border: 1px solid black;">Assessor</th>
+    <th style = "border: 1px solid black;">Status</th>
+    <th style = "border: 1px solid black;">Start Time</th>
+    <th style = "border: 1px solid black;">End Time</th>
+    <th style = "border: 1px solid black;">Time Elapsed</th>
+
+
+
+
+  </tr>
+ <% @csu.each do |u| %>
+  <tr class="text-center"> 
+    <td style = "border: 1px solid black;"><%= u.id%></td> 
+    <td style = "border: 1px solid black;"><%= u.casestudy_id%>.<%= u.casestudy.name %></td> 
+    <td style = "border: 1px solid black;"><%= u.user_id%>.<%= u.user.name %></td> 
+    <td style = "border: 1px solid black;"><%= u.assessor_id%>.<%= u.assessor.name %></td> 
+    <td style = "border: 1px solid black;"><%= u.status%></td> 
+    <td style = "border: 1px solid black;"><%= u.started_time%></td> 
+    <td style = "border: 1px solid black;"><%= u.completed_time%></td> 
+    <td style = "border: 1px solid black;"><%= (u.time_elapsed)%></td>
+
+   
+
+  </tr>
+  <% end %>
+ </table>

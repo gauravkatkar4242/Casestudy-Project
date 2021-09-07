@@ -1,0 +1,64 @@
+<%= link_to 'Show All Casestudies',casestudies_path, :class => 'btn bg-danger text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+
+<% if can? :delete, @casestudy %>
+ 			<%= link_to 'Edit',edit_casestudy_path(@casestudy) , :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+ 		<% end %>
+
+<div class="row col-md-12 border-dark">
+
+				<div class="border border-success bg-light text-dark text-center px-md-8 " style="margin: 20px; padding: 20px 5px;">
+					<h4 class="border border-dark">Casestudy Details</h4>
+					<br>
+					
+					<h6> Name: <%= @casestudy.name %> </h6>
+					
+					<!-- <h6> Creator_id: <%= @casestudy.creator_id %> </h6> -->
+					<!-- <h6> Creator name: <%= User.find(@casestudy.creator_id).name %> </h6> -->
+					<h6> Duration: <%= @casestudy.duration %> </h6>
+					<h6> Scale: <%= @casestudy.scale %> </h6>
+				</div>
+			<div class="col-sm-7 ">
+
+				<div class="border border-success  bg-light text-dark  text-center" style="margin: 20px; padding: 20px 0px;">
+					<h6 style="margin: 20px;" class="border border-dark">Pages</h6>
+					<% @casestudy.pages.each do |p|%>
+			 			<div class="border-bottom border-dark">
+			 			<%= p.body %>
+			 			</div>
+			 			<br>
+			 		<% end %>
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<div class="border border-success  bg-light text-dark  text-center" style="margin: 20px 0; padding: 20px 0px;">
+			 		<h6 style="margin: 20px;" class="border border-dark text-center ">Questions</h6>
+
+						<% @casestudy.questions.each do |q|%>
+							<div class="border-bottom">
+							<div class="text-center">
+								<%= q.body  %>
+							</div>
+				 			<% if q.traits.count > 0%>
+				 				<div class="bg-light text-dark">
+						 			<% q.traits.each do |t|%>
+						 				<span class="text-light border bg-secondary btn sm-4"  style="margin: 10px;"> 
+						 					<%= t.name%>
+						 				</span>
+						 			<% end %>
+						 		</div>	
+					 		<% end %>
+					 		<br>
+					 		<div class="row" style=" margin-left: 20px; margin-bottom: 10px;">
+						 		<textarea type="text-area" name="Ans" placeholder="Ans..."  style="width: 70%;"></textarea> 
+						 		<button style="width: 20%;margin-left: 10px; height: 40px;"> Submit </button>
+						 		<br><br>
+					 		</div>
+					 		</div>
+			 			
+			 			<% end %>	
+		 		</div>
+	 		</div>
+
+	 	
+</div>  
+
