@@ -73,6 +73,8 @@
 		 				<%= link_to 'Resume', casestudy_user_user_responses_path( casestudy_user.id), :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
 		 			<% elsif casestudy_user.status == 'submitted_but_not_assessed' %>
 		 				<%= link_to 'Test Submitted Succesfully. Wait for Assessor',  :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
+		 			<% elsif casestudy_user.status == 'submitted_and_assessed' %>
+		 				<%= link_to 'Test Submitted Succesfully. You can see result here',casestudy_user_show_assessor_response_path(casestudy_user), :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
 		 			<% end %>
 				
 				<% end %>

@@ -1,0 +1,68 @@
+
+<% @casestudy_users.each do |casestudy_user| %>
+	<% if casestudy_user.status == "submitted_but_not_assessed" and can? :update, AssessorResponse.find_by(casestudy_user_id: casestudy_user.id, assessor: current_user) %>
+		<div class="border border-dark p-3 m-2">
+			<div class="row col-md-12">
+				<div class="row col-md-8 ">
+
+					<h5 class="text-center"> Casestudy User Details </h5>
+					<div class="row col-md-12">
+						<span class="col-sm-4">Casestudy_User id </span>
+						<span class="col-sm-6"><%= casestudy_user.id %> </span>
+					</div>
+					<div class="row col-md-12">
+						<span class="col-sm-4">Casestudy </span>
+						<span class="col-sm-6"><%= casestudy_user.casestudy.id %>. <%= casestudy_user.casestudy.name %> </span>
+					</div>
+					<div class="row col-md-12">
+						<span class="col-sm-4">User </span>
+						<span class="col-sm-6"><%= casestudy_user.user.id %>. <%= casestudy_user.user.name %> </span>
+					</div>
+					<div class="row col-md-12">
+						<span class="col-sm-4">Assessor </span>
+						<span class="col-sm-6"><%= casestudy_user.assessor.id %>. <%= casestudy_user.assessor.name %> </span>
+					</div>
+				</div>
+				<div class="row col-md-4">
+
+				<%= link_to 'Assess', edit_assessor_response_path(casestudy_user) , :class => 'btn bg-success text-light btn-block m-5'%> 
+				</div>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<h1>Assessed Test</h1>
+
+<% @casestudy_users.each do |casestudy_user| %>
+	<% if casestudy_user.status == "submitted_and_assessed" and can? :show, casestudy_user %>
+		<div class="border border-dark p-3 m-2">
+			<div class="row col-md-12">
+				<div class="row col-md-8 ">
+
+					<h5 class="text-center"> Casestudy User Details </h5>
+					<div class="row col-md-12">
+						<span class="col-sm-4">Casestudy_User id </span>
+						<span class="col-sm-6"><%= casestudy_user.id %> </span>
+					</div>
+					<div class="row col-md-12">
+						<span class="col-sm-4">Casestudy </span>
+						<span class="col-sm-6"><%= casestudy_user.casestudy.id %>. <%= casestudy_user.casestudy.name %> </span>
+					</div>
+					<div class="row col-md-12">
+						<span class="col-sm-4">User </span>
+						<span class="col-sm-6"><%= casestudy_user.user.id %>. <%= casestudy_user.user.name %> </span>
+					</div>
+					<div class="row col-md-12">
+						<span class="col-sm-4">Assessed by </span>
+						<span class="col-sm-6"><%= casestudy_user.assessor.id %>. <%= casestudy_user.assessor.name %> </span>
+					</div>
+				</div>
+				<div class="row col-md-4">
+
+				<%= link_to 'Show', casestudy_user_show_assessor_response_path(casestudy_user) , :class => 'btn bg-success text-light btn-block m-5'%> 
+				</div>
+			</div>
+		</div>
+	<% end %>
+<% end %>

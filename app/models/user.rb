@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :casestudies_created, class_name:'Casestudy', :foreign_key => 'creator_id'
 	has_many :casestudies, through: :casestudy_users
 	has_many :user_responses, :dependent => :delete_all
-
+  has_many :assessor_responses
 
 	validates :name, presence: true, length: { minimum: 3}, 
 									  format: { with: /\A[a-zA-Z\s]+\z/,message: "only allows letters" }

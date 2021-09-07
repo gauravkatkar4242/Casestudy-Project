@@ -1,0 +1,26 @@
+
+<%= link_to 'Back', assessor_responses_path , :class => 'btn bg-success text-light px-md-5 btn-block', :style => 'margin:10px 20px 10px 5px;' %> 
+
+<% @casestudy_user.casestudy.questions.each do |question|%>
+	<div class="row col-md-12 border border-dark m-3 p-2">
+		<div class="col-md-6 border-dark">
+			<h6>Question</h6>
+			<p class="border m-3 p-1"> <%= question.body %> </p>
+			<h6>Answer</h6>
+			<p class="border m-3 p-1"> <%= @casestudy_user.user_responses.find_by(question: question).response %></p>
+		</div>
+
+		<div  class="col-md-6 border-dark">
+			<% question.question_traits.each do |question_trait|%>
+
+				<% assessor_response = AssessorResponse.find_by(casestudy_user_id: @casestudy_user.id,
+																question_trait_id: question_trait.id,
+																assessor_id: current_user.id) %>
+				<%= render "assessor_responses/assessor_response_form", assessor_response: assessor_response %>
+			<% end %>
+		</div>
+	</div>
+<%end%>
+<% if @casestudy_user.status == "submitted_but_not_assessed" %>
+	<%= link_to 'Submit Final', assessor_response_final_submit_path(@casestudy_user) , :class => 'btn bg-success text-light px-md-5 btn-block', :style => 'margin:10px 20px 10px 5px;' %> 
+<% end %>

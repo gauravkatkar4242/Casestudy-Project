@@ -6,8 +6,8 @@ class UserResponsesController < ApplicationController
 		@casestudy = @casestudy_user.casestudy
 		if current_user != @casestudy_user.user
 			redirect_to after_sign_in_path_for(current_user), notice: "You can't Access this CasestudyUser"
-		end
-		if @casestudy_user.status == 'submitted_but_not_assessed'
+
+		elsif @casestudy_user.status == 'submitted_but_not_assessed' or @casestudy_user.status == 'submitted_and_assessed'
 			sign_out current_user
 			redirect_to after_sign_in_path_for(current_user), notice: "You have already submitted Exam in INdex"
 		end	
@@ -19,8 +19,8 @@ class UserResponsesController < ApplicationController
 		@time = @casestudy.duration
 		if current_user != @casestudy_user.user
 			redirect_to after_sign_in_path_for(current_user), notice: "You can't Access this CasestudyUser"
-		end
-		if @casestudy_user.status == 'Not_started'
+		
+		elsif @casestudy_user.status == 'Not_started'
 			init_exam()
 			start_exam()
 
@@ -30,7 +30,7 @@ class UserResponsesController < ApplicationController
 
 		elsif @casestudy_user.status == 'in_progress'
 
-		elsif @casestudy_user.status == 'submitted_but_not_assessed'
+		elsif @casestudy_user.status == 'submitted_but_not_assessed' or @casestudy_user.status == 'submitted_and_assessed'
 			sign_out current_user
 			redirect_to after_sign_in_path_for(current_user), notice: "You have already submitted Exam from Exam"
 		end	 

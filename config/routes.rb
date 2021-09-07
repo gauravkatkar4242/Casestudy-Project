@@ -28,8 +28,14 @@ Rails.application.routes.draw do
     resources :user_responses, only: [:index, :update]
     get '/user_responses/submit', to: 'user_responses#submit', as: 'final_submit'
     get '/user_responses/exam', to: 'user_responses#exam', as: 'start_exam'
+    get '/assessor_responses/show', to: 'assessor_responses#show', as: 'show_assessor_response'
 
   end
+  resources :assessor_responses do
+    get '/final_submit', to: 'assessor_responses#final_submit'
+  end
+
+
   resources :traits
   resources :casestudies do
     resources :pages

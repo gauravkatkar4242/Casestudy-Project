@@ -6,6 +6,13 @@ module ExamHelper
 											casestudy_user_id: @casestudy_user.id,
 											user_id: @casestudy_user.user_id)
 				ans.save
+					q.question_traits.each do |question_trait|
+						assessor_response = AssessorResponse.create(question_trait_id: question_trait.id,
+																	casestudy_user_id: @casestudy_user.id,
+																	user_id: @casestudy_user.user_id,
+																	assessor_id: @casestudy_user.assessor_id,
+																	rating: 0)
+				end
 				# raise ans.errors.inspect
 			end
 		end

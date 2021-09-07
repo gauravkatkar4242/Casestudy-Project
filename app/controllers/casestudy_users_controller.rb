@@ -1,5 +1,5 @@
 class CasestudyUsersController < ApplicationController
-	skip_load_and_authorize_resource
+	load_and_authorize_resource :except => [:create_user_and_assign_casestudy_form, :create_user_and_assign_casestudy]
 	def index
 		@casestudy_users = CasestudyUser.all
 	end

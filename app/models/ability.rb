@@ -17,6 +17,7 @@ class Ability
       can :manage, CasestudyUser
       can :manage, Trait
       can :manage, QuestionTrait
+      can :manage, AssessorResponse
 
 
     elsif user.roles.exists?(name: "Content Creator")
@@ -33,16 +34,20 @@ class Ability
 
     elsif user.roles.exists?(name: "Assessor")
       can :assessor, :dashboard
+      can :manage, AssessorResponse
+      can :read, UserResponse
+      can :read, CasestudyUser, :assessor => user
+
 
     elsif user.roles.exists?(name: "Candidate")
       can :candidate, :dashboard
       can :read, Casestudy, users: { id: user.id }
-      can :index , UserResponse, :user_id => user.id
+      can :manage , UserResponse, :user_id => user.id
       can :exam , UserResponse, :user_id => user.id
-      can :update , UserResponse, :user_id => user.id
       can :submit , UserResponse, :user_id => user.id
-      can :update_time, UserResponse
-
+      can :read, AssessorResponse, :user => user
+      can :read, CasestudyUser, :user => user
+      # cannot :index, CasestudyUser
 
     end
 

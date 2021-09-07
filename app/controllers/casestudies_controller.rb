@@ -3,7 +3,7 @@ class CasestudiesController < ApplicationController
 	before_action :set_casestudy, only: %i[show edit update destroy]
 
 	def index
-	
+		# raise @casestudies.inspect
 	end
 
 	def new

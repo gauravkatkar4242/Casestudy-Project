@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
 	load_and_authorize_resource :class => false
+	before_action :set_user, only: %i[update_role]
 
 
 	def admin
@@ -24,17 +25,20 @@ class DashboardController < ApplicationController
 
 
 	def update_role
-		id = params[:role_id]
-		user_id = params[:user_id]
-		if User.find(user_id).roles.exists?(id)
-			RoleUser.find_by(user_id: params[:user_id], role_id: params[:role_id]).delete
+		if @user.roles.exists?(@role.id)
+			RoleUser.find_by(user_id: @user.id, role_id: @role.id).delete
 		else
 			# RoleUser.create(user_id: params[:user_id], role_id: params[:role_id])
 			RoleUser.create(role_user_param)
 		end
 		redirect_to user_permissions_path
 	end
+	private
+    def set_user
+      @user = User.find(params[:user_id])
+      @role = Role.find(params[:role_id])
 
+    end
 	def role_user_param
 		# sraise params.inspect
 		 params.permit(:user_id,:role_id)

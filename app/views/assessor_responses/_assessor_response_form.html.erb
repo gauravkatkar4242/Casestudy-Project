@@ -1,0 +1,16 @@
+<div class="container border text-center py-md-2 mt-4">
+  
+  <%= form_with  model: assessor_response do |form| %>
+
+  <div class="field row py-md-2">
+    <%= form.label assessor_response.question_trait.trait.name  , :class => 'col-sm-4 fw-bold'%>
+    <%= form.number_field :rating, min: 1, max: @casestudy_user.casestudy.scale,  :class => 'col-sm-2 ' %>
+
+    <% if assessor_response.casestudy_user.status == "submitted_but_not_assessed" and current_user.roles.exists?(name: "Assessor") %>
+      <div class="actions col-sm-4 ">
+        <%= form.submit :"Save Assessor Resoponse", class:"btn btn-block btn-dark text-light border " %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
