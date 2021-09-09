@@ -31,13 +31,13 @@ Rails.application.routes.draw do
     get '/assessor_responses/show', to: 'assessor_responses#show', as: 'show_assessor_response'
 
   end
-  resources :assessor_responses do
+  resources :assessor_responses, only: [:index, :update, :show, :edit] do
     get '/final_submit', to: 'assessor_responses#final_submit'
   end
 
 
   resources :traits
-  resources :casestudies do
+  resources :casestudies, except: [:destroy] do
     resources :pages
     resources :questions do
       get 'assign_trait', to: 'questions#assign_trait'

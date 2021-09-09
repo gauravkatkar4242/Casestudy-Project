@@ -11,6 +11,15 @@ RSpec.describe CasestudyUser, type: :model do
     @casestudy_user = create(:casestudy_user)
   end
 
+  it { should belong_to(:casestudy) }
+  it { should belong_to(:user) }
+  it { should belong_to(:assessor).class_name('User') }
+  it { should have_many(:assessor_responses) }
+  it { should have_many(:user_responses) }
+  it { should allow_value('not_started','in_progress','submitted_but_not_assessed','submitted_and_assessed').for(:status) }
+
+  it{ should validate_uniqueness_of(:casestudy).scoped_to(:user_id).ignoring_case_sensitivity } 
+
   it "Valid casestudy_user" do
     expect(@casestudy_user).to be_valid
   end

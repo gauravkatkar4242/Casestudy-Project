@@ -9,7 +9,7 @@ class Casestudy < ApplicationRecord
 
 	# accepts_nested_attributes_for :pages
 	# accepts_nested_attributes_for :questions
-	validates :name, presence: true
+	validates :name, presence: true, uniqueness: true
 	validates :duration, presence: true
 	validates :scale, presence: true
 

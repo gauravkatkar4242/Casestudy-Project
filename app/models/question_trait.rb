@@ -3,6 +3,6 @@ class QuestionTrait < ApplicationRecord
   belongs_to :question
   has_many :assessor_responses
 
-  validates_uniqueness_of :trait, :scope => [:question]
+  validates_uniqueness_of :trait, :scope => [:question_id]
 
 end

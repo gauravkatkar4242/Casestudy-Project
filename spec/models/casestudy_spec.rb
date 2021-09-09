@@ -13,6 +13,15 @@ RSpec.describe Casestudy, type: :model do
   after do
     Casestudy.delete_all
   end
+
+  it { should have_many(:pages)}
+  it { should have_many(:questions)}
+  it { should have_many(:casestudy_users)}
+  it { should have_many(:users).through(:casestudy_users) }
+  it { should have_many(:question_traits).through(:questions) }
+  it { should belong_to(:creator).class_name('User').with_foreign_key('creator_id') }
+
+  it { should validate_uniqueness_of(:name).ignoring_case_sensitivity }
  
   it "valid Casestudy" do
     expect(@casestudy).to be_valid

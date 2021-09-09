@@ -1,6 +1,6 @@
 module ExamHelper
 	def init_exam
-		if @casestudy_user.status == 'Not_started'
+		if @casestudy_user.status == 'not_started'
 			@casestudy.questions.each do |q|
 				ans = q.user_responses.new(response: "Not answered yet...",
 											casestudy_user_id: @casestudy_user.id,

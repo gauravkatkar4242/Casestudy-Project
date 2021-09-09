@@ -68,7 +68,7 @@ function update_db() {
 	jQuery.ajax(
 	{
       url: '/update_time',
-	  	data: {time: time_e + new_time,casestudy_user: cs ,authenticity_token: AUTH_TOKEN },
+	  	data: {time: time_e + new_time, casestudy_user: cs, authenticity_token: AUTH_TOKEN },
       type: "POST",
       success: function(data) 
       {

@@ -1,6 +1,8 @@
 class UserResponsesController < ApplicationController
+	
 	load_and_authorize_resource :except => [:update_time, :auto_submit]
 	include ExamHelper
+	
 	def index
 		@casestudy_user = CasestudyUser.find(params[:casestudy_user_id])
 		@casestudy = @casestudy_user.casestudy
@@ -20,7 +22,7 @@ class UserResponsesController < ApplicationController
 		if current_user != @casestudy_user.user
 			redirect_to after_sign_in_path_for(current_user), notice: "You can't Access this CasestudyUser"
 		
-		elsif @casestudy_user.status == 'Not_started'
+		elsif @casestudy_user.status == 'not_started'
 			init_exam()
 			start_exam()
 

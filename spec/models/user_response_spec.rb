@@ -4,6 +4,15 @@ RSpec.describe UserResponse, type: :model do
   before(:each) do
     @ur = create(:user_response)
   end
+
+
+  it { should belong_to(:question) }
+  it { should belong_to(:casestudy_user) }
+  it { should belong_to(:user) }
+ 
+
+  it { should validate_uniqueness_of(:question).scoped_to(:casestudy_user_id).ignoring_case_sensitivity }
+
   it "Valid user_response" do
     expect(@ur).to be_valid
   end

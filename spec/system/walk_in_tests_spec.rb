@@ -28,7 +28,7 @@ RSpec.describe 'WalkInTests', type: :system do
   		expect(CasestudyUser.last.casestudy).to eq(@casestudy)
   		expect(CasestudyUser.last.user.email).to eq("test@exam.com")
   		expect(CasestudyUser.last.assessor).to eq(@assessor)
-  		expect(CasestudyUser.last.status).to eq("Not_started")
+  		expect(CasestudyUser.last.status).to eq("not_started")
 
   		click_on "start"
   		expect(page).to have_content("Casestudy Details")

@@ -67,7 +67,7 @@
 		 			<%= link_to 'Edit',edit_casestudy_path(c), :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
 		 		<% elsif current_user.roles.exists?(name: "Candidate") %>
 					<% casestudy_user = CasestudyUser.find_by(casestudy_id: c.id, user_id: current_user.id) %>
-					<% if casestudy_user.status == "Not_started" %>
+					<% if casestudy_user.status == "not_started" %>
 						<%= link_to 'Start', casestudy_user_user_responses_path( casestudy_user.id), :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>
 					<% elsif casestudy_user.status == 'in_progress' %>
 		 				<%= link_to 'Resume', casestudy_user_user_responses_path( casestudy_user.id), :class => 'btn bg-dark text-light px-md-5 btn-block border', :style => 'margin:10px 20px 10px 5px;' %>

@@ -5,7 +5,8 @@ RSpec.describe Page, type: :model do
   before do  
     @page = create(:page)
   end
-
+  it { should belong_to(:casestudy) }
+  
   it "Valid Page" do
     expect(@page).to be_valid
   end

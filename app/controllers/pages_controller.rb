@@ -12,6 +12,17 @@ class PagesController < ApplicationController
 		@page = Page.new
 	end
 
+	def create
+		@page.casestudy_id = @casestudy.id
+			if @page.save
+				redirect_to edit_casestudy_path(@casestudy), notice: "Page added successfully." 
+			else
+				# raise @page.errors.inspect
+				redirect_to edit_casestudy_path(@casestudy), notice: "Something is Wrong"
+			end
+		
+	end
+	
 	def show
 		
 	end
@@ -33,16 +44,6 @@ class PagesController < ApplicationController
 
 
 
-	def create
-		@page.casestudy_id = @casestudy.id
-			if @page.save
-				redirect_to edit_casestudy_path(@casestudy), notice: "Page added successfully." 
-			else
-				# raise @page.errors.inspect
-				redirect_to edit_casestudy_path(@casestudy), notice: "Something is Wrong"
-			end
-		
-	end
 	 def destroy
     @page.destroy
     redirect_to edit_casestudy_path(@casestudy), notice: "Page was successfully destroyed." 

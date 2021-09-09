@@ -7,6 +7,11 @@ RSpec.describe AssessorResponse, type: :model do
     @ar = create(:assessor_response)
   end
 
+  it { should belong_to(:question_trait)}
+  it { should belong_to(:casestudy_user)}
+  it { should belong_to(:user)}
+  it { should belong_to(:assessor).class_name('User')}
+
   it "Valid assessor_response" do
     expect(@ar).to be_valid
   end
